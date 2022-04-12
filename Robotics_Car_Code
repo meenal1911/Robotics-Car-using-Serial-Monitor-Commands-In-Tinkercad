@@ -1,0 +1,77 @@
+void setup(){
+pinMode(led, OUTPUT);
+pinMode(2, OUTPUT);
+pinMode(3, OUTPUT);
+pinMode(4, OUTPUT);
+pinMode(5, OUTPUT);
+Serial.begin(9600);
+}
+void loop(){
+if(Serial.available()){
+c=Serial.read();
+Serial.println(c);
+}
+if(c=='F'){
+Serial.println("Forward");
+digitalWrite(2,LOW);
+digitalWrite(3,HIGH);
+digitalWrite(4,LOW);
+digitalWrite(5,HIGH);
+digitalWrite(13,LOW);
+delay(1000);
+}
+if(c=='L'){
+Serial.println("Left");
+digitalWrite(2,HIGH);
+digitalWrite(3,LOW);
+digitalWrite(4,LOW);
+digitalWrite(5,HIGH);
+digitalWrite(13,LOW);
+delay(1000);
+}
+if(c=='S'){
+Serial.println("Stop");
+digitalWrite(2,HIGH);
+digitalWrite(3,HIGH);
+digitalWrite(4,HIGH);
+digitalWrite(5,HIGH);
+digitalWrite(13,HIGH);
+delay(1000);
+}
+if(c=='R'){
+Serial.println("Right");
+digitalWrite(2,LOW);
+digitalWrite(3,HIGH);
+digitalWrite(4,HIGH);
+digitalWrite(5,LOW);
+digitalWrite(13,LOW);
+delay(1000);
+}
+if(c=='B'){
+Serial.println("Back");
+digitalWrite(2,HIGH);
+digitalWrite(3,LOW);
+digitalWrite(4,HIGH);
+digitalWrite(5,LOW);
+digitalWrite(13,LOW);
+delay(1000);
+}
+long time,dist;
+dist = time/2/29.1;
+Serial.println(dist);
+delay(1000);
+if (dist<100) {
+digitalWrite(2,LOW);
+digitalWrite(3,LOW);
+digitalWrite(4,LOW);
+digitalWrite(5,LOW);
+digitalWrite(led,HIGH);
+}
+else {
+digitalWrite(2,HIGH);
+digitalWrite(3,LOW);
+digitalWrite(4,HIGH);
+digitalWrite(5,LOW);
+digitalWrite(led,LOW);
+}
+}
